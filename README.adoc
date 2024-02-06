@@ -1,7 +1,7 @@
-//Stack Overflow 
+//Stack Overflow
 :name: stackoverflow
 //graph example description
-:long-name: Stack Overflow Questions, Answers, Tags, and Comments 
+:long-name: Stack Overflow Questions, Answers, Tags, and Comments
 :description: Stack Overflow questions, answers, tags, and comments and the relationships between them.
 //icon representing graph example
 :icon: documentation/img/icon.svg
@@ -16,14 +16,14 @@
 //use a script to generate/process data? Set to either path for script, or false if not used
 :use-load-script: false
 //use a graph dump file for initial data set? Set to either path for dump file, or false if not used
-:use-dump-file: data/stackoverflow-4-3-1.dump
+:use-dump-file: data/stackoverflow-50.dump
 //if a zip file exists for the data, specify here. Set to false if not used
 :zip-file: false
-//use a plugin for the database, separate multiple plugins with comma. 'public' plugins are apoc, graph-algorithms. 
+//use a plugin for the database, separate multiple plugins with comma. 'public' plugins are apoc, graph-algorithms.
 //other algorithms are specified by path, e.g. apoc,graph-algorithms; Set to false if not used
 :use-plugin: apoc
 //target version of the database this example should run on
-:target-db-version: 4.0,4.3
+:target-db-version: 5.0
 //specify a Bloom perspective, or false if not used
 :bloom-perspective: false
 //guide for the graph example. Should be friendly enough to be converted into various document formats
@@ -70,7 +70,7 @@ MATCH (t:Tag {name:$tagName})<-[:TAGGED]-(q:Question)<-[:ANSWERED]-(a:Answer {is
 RETURN u.display_name as answerer LIMIT 5
 ----
 
-=== Setup
+=== Setup [[setup]]
 
 This is for Neo4j version: {target-db-version}
 
@@ -135,6 +135,22 @@ endif::[]
 * link:code/csharp/Example.cs[C#]
 * link:code/python/example.py[Python]
 * link:code/go/example.go[Go]
+
+=== Troubleshooting
+
+==== Error: "This database is currently offline"
+
+This is most likely due to the version mismatch between Neo4J database and dump version. The number in the
+link:data[dump file name] corresponds to the major and minor version of the matching database version. For example:
+network-management-50.dump works for 5.0 database. *Please link:#setup[recreate database] with the matching dump file
+version*
+
+==== Error: "Unsupported clauses were used: ..."
+
+Looks like the correct database has not been selected. If Neo4j desktop app is used, please make sure that the *DB name
+displayed as*
+
+image::documentation/img/correct-db.png[Error loading documentation/img/correct-db.png]
 
 === Feedback
 
