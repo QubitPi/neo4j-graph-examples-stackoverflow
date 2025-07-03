@@ -23,5 +23,5 @@ name: CI/CD
 jobs:
   neo4j-graph-examples-ci-cd:
     uses: QubitPi/QubitPi/.github/workflows/neo4j-graph-examples-ci-cd.yml@master
-    secrets:
-      slack-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
+    with:
+      cname: neo4j-stackoverflow.qubitpi.org
